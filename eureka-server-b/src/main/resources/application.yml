@@ -1,0 +1,18 @@
+## 应用注册在server的名字
+spring:
+  application:
+    name : eureka-server
+## 应用端口
+server:
+  port : 1002
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://pert1:1001/eureka/,http://pert2:1002/eureka/  
+    # register-with-eureka : false
+    # fetch-registry : false
+  instance:
+    hostname : pert2
+    #prefer-ip-address : true
+    instance-id : ${spring.cloud.client.ipAddress}:${server.port}

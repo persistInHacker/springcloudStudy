@@ -1,0 +1,31 @@
+## 应用注册在server的名字
+spring:
+  application:
+    name : eureka-server
+## 应用端口
+server:
+  port : 1001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://pert1:1001/eureka/,http://pert2:1002/eureka/  
+    # register-with-eureka : false
+    # fetch-registry : false
+  instance:
+    hostname : pert1
+    #prefer-ip-address : true
+    instance-id : ${spring.cloud.client.ipAddress}:${server.port}
+
+#eureka.server.enable-self-preservation=false
+## defaultZone ： server 所在地址
+
+## 若是单点server 则下面两个配置设置为false
+## register-with-eureka 是否注册自己
+## fetch-registry 是否从eureka上获取注册信息
+
+## hostname 如localhost 需要在hosts文件配置
+## prefer-ip-address  true为不使用主机名来定义注册中心的地址
+
+## 注：prefer-ip-address不可打开，否则unavailable-replicas页面此值不为空
+## 服务是以域名的方式来注册的，若打开ip，则两者不同步，导致分片不可用
