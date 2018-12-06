@@ -2,6 +2,10 @@
 spring:
   application:
     name : eureka-server
+  security:
+    user:
+      name : admin
+      password : admin
 ## 应用端口
 server:
   port : 1001
@@ -9,14 +13,18 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone : http://pert1:1001/eureka/,http://pert2:1002/eureka/  
-    # register-with-eureka : false
-    # fetch-registry : false
+      defaultZone : http://admin:admin@pert1:1001/eureka/,http://admin:admin@pert2:1002/eureka/  
+      #defaultZone : http://pert1:1001/eureka/,http://pert2:1002/eureka/  
+      #register-with-eureka : false
+      #fetch-registry : false
   instance:
     hostname : pert1
     #prefer-ip-address : true
     instance-id : ${spring.cloud.client.ipAddress}:${server.port}
 
+#logging:
+#  level:
+#    root : DEBUG
 #eureka.server.enable-self-preservation=false
 ## defaultZone ： server 所在地址
 
