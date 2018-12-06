@@ -1,0 +1,14 @@
+spring:
+  application:
+    name : feign-demo
+server:
+  port : 3002
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://admin:admin@pert1:1001/eureka/,http://admin:admin@pert2:1002/eureka/
+  instance:
+    hostname : pert1
+    instance-id : ${spring.cloud.client.ipAddress}:${server.port}
+

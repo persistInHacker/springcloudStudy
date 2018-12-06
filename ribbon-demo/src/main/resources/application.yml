@@ -1,0 +1,18 @@
+spring:
+  application:
+    name : ribbon-demo
+server:
+  port : 3001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://admin:admin@pert1:1001/eureka/,http://admin:admin@pert2:1002/eureka/
+  instance:
+    hostname : pert1
+    instance-id : ${spring.cloud.client.ipAddress}:${server.port}
+
+##此配置不起效
+#eureka-client:
+#  ribbon:
+#    NFLoadBalancerRuleClassName:com.netflix.loadbalancer.RandomRule
