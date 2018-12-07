@@ -1,0 +1,31 @@
+spring:
+  application:
+    name : hystrix-a
+server:
+  port : 4001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://admin:admin@pert1:1001/eureka/,http://admin:admin@pert2:1002/eureka/
+  instance:
+    hostname : pert1
+    instance-id : ${spring.cloud.client.ipAddress}:${server.port}
+
+feign:
+  hystrix:
+    enabled: true  # 开启Feign的Hystrix的功能
+
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        requestVolumeThreshold: 3
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 4000
+
+## requestVolumeThreshold 熔断的阈值 hystrix调用A服务 A服务连续3次失败后 则熔断服务 默认20秒
+## timeoutInMilliseconds 恢复时间 熔断器熔断后恢复的时间 默认5秒
+
