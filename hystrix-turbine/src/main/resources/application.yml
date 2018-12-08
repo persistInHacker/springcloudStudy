@@ -1,0 +1,29 @@
+spring:
+  application:
+    name : hystrix-trubine
+server:
+  port : 4003
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://admin:admin@pert1:1001/eureka/,http://admin:admin@pert2:1002/eureka/
+  instance:
+    hostname : pert1
+    instance-id : ${spring.cloud.client.ipAddress}:${server.port}
+
+feign:
+  hystrix:
+    enabled: true  # 开启Feign的Hystrix的功能
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include : '*'
+        
+turbine:
+  appConfig : hystrix-a,hystrix-dashborad
+  aggregator : 
+    cluster-config : default
+  clusterNameExpression : "'default'"
