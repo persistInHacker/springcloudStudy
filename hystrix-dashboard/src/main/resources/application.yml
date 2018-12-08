@@ -20,7 +20,7 @@ management:
   endpoints:
     web:
       exposure:
-        include : '*'
+        include : '*' #配置这个页面方可访问
 
 hystrix:
   command:

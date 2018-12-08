@@ -27,3 +27,7 @@ turbine:
   aggregator : 
     cluster-config : default
   clusterNameExpression : "'default'"
+  
+  #appConfig 监控的应用服务名
+  #clusterNameExpression 参数指定了集群名称为
+ 
