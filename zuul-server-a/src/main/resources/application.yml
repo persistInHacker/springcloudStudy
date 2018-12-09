@@ -1,0 +1,23 @@
+spring:
+  application:
+    name : zuul-server-a
+server:
+  port : 5001
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone : http://admin:admin@pert1:1001/eureka/,http://admin:admin@pert2:1002/eureka/
+  instance:
+    hostname : pert1
+    instance-id : ${spring.cloud.client.ipAddress}:${server.port}
+    
+management:
+  security:
+    enabled: false
+##把eureka-client的访问名字改成user 如以前是http://localhost:5001/eureka-client/test/1 改后：http://localhost:5001/user/test/1
+zuul:
+  routes:
+    eureka-client : /user/**
+
+
