@@ -1,0 +1,19 @@
+## 应用注册在server的名字
+spring:
+  application:
+    name : my-config
+  cloud:
+    config:
+      uri : http://localhost:6001/
+      profile : dev
+      label : master
+
+
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone : http://admin:admin@pert1:1001/eureka/,http://admin:admin@pert2:1002/eureka/  
+#  instance:
+#    hostname : pert1
+#    instance-id : ${spring.cloud.client.ipAddress}:${server.port}
+
